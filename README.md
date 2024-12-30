@@ -2,38 +2,68 @@
 
 This project, developed for the *Tracking Olympiad* seminar (SS 2024), focuses on tracking Hexbugs—small, vibrating, bug-like devices that move randomly. The primary goal was to explore methods for accurately detecting and tracking these objects in videos, especially given challenges such as low frame rates and erratic movements.
 
+<img src="/media/tracking_gifs/run_214_head_b_ed_001o.gif" width="100" alt="Description of GIF">
+
 Disclaimer: This is a quick implementation project. 
 
 ---
 
 ## Table of Contents
 
-1. [Project Overview](#project-overview)
-2. [Setup Instructions](#setup-instructions)
-3. [Project Structure](#project-structure)
-4. [Experiment Settings](#experiment-settings)
-5. [Methodology](#methodology)
-6. [Demo](#demo)
-7. [Results and Key Findings](#results-and-key-findings)
+1. [Experimental Setup](#experimental-setup)
+2. [Project Overview](#project-overview)
+3. [Setup Instructions](#setup-instructions)
+4. [Project Structure](#project-structure)
+5. [Experiment Settings](#experiment-settings)
+6. [Methodology](#methodology)
+7. [Demo](#demo)
+8. [Results and Key Findings](#results-and-key-findings)
 
 ---
 
+## Experimental Setup
+
+### Dataset
+- The dataset comprises **105 videos**:
+  - **100 videos** were used for training and evaluation.
+  - **5 videos** were reserved exclusively for testing.
+- The videos feature a **static camera view** and multiple Hexbugs with the following challenges:
+  - Hexbugs lying on their sides or backs.
+  - Occlusions and collisions between objects.
+  - Color variations, including underrepresented cases like black Hexbugs.
+  - Variations in lighting conditions.
+
+### Annotation Process
+- Hexbug **head positions** were manually annotated as center points using a custom labeling GUI.
+- To train YOLO, fixed-size bounding boxes were generated around the labeled head positions.
+
+### Body Label Generation with SAM
+- To enhance detection and tracking performance, **body labels** were generated using Meta's **Segment Anything Model (SAM)**.
+- The process involved:
+  - Segmenting the entire frame into potential objects using SAM.
+  - Matching YOLO-detected head positions with SAM segments using Intersection over Union (IoU).
+  - Selecting the best-matched segment for each head detection, refining it by expanding its size by 20%.
+- These generated labels helped in training a more robust YOLO model with both head (class 0) and body (class 1) annotations.
+
 ## Project Overview
 
-The main focus of this project was to detect and track Hexbug heads in videos. Given the unique challenges posed by the dataset, such as:
-- Small object sizes
-- Low frame rates
-- Erratic object movement
+This project, developed for the *Tracking Olympiad* seminar (SS 2024), focuses on tracking Hexbugs—small, vibrating, bug-like devices that move randomly. The primary objective is to detect and track the **heads** of Hexbugs across videos with unique challenges, including:
+- Low frame rates.
+- Erratic movement patterns.
+- Variations in lighting and Hexbug orientation.
 
-We used a combination of detection models and tracking algorithms to achieve the objective.
+### Project Flow
+1. **Manual Head Labeling**: Annotated Hexbug head center points manually for training data.
+2. **Generating Body Labels**: Used the **Segment Anything Model (SAM)** to create bounding boxes for Hexbug bodies.
+3. **Detection Models**:
+   - **Head-only Detection**: YOLO model trained with head labels only.
+   - **Head and Body Detection**: YOLO model trained with both head (class 0) and SAM-generated body (class 1) labels.
+4. **Tracking Algorithms**:
+   - **Minimal Euclidean Distance Tracking**: Tracks Hexbugs across frames by matching detections based on proximity.
+   - **Lucas-Kanade Optical Flow**: Uses optical flow to predict Hexbug motion between frames and refines tracking.
+5. **Evaluation**: Models and algorithms were tested on **5 exclusive test videos** to analyze performance.
 
-Key highlights:
-- **Detection Models:** Two approaches were explored:
-  1. Head-only detection using YOLOv8.
-  2. Head and body detection using YOLOv8, with body labels generated via the Segment Anything Model (SAM).
-- **Tracking Methods:** 
-  1. Minimal Euclidean distance-based tracking.
-  2. Lucas-Kanade optical flow-based tracking.
+The project focused on exploring combinations of these detection and tracking methods to determine the most accurate and robust approach.
 
 ---
 
@@ -83,21 +113,8 @@ Hexbug_Tracking_Project/
 └── results/                   # Results (e.g., tracking outputs, videos)
 ```
 
-## Experiment Settings
 
-### Annotation Process
-- The labeling process was performed using a custom fork of the TRACO Labeling Tool.
-- Labels initially consisted of **center points** for Hexbug heads instead of bounding boxes. To use these labels for YOLO training, fixed-size bounding boxes were later generated around the center points.
-
-### Body Label Generation with SAM
-- To enhance detection and tracking performance, **body labels** were generated using Meta's **Segment Anything Model (SAM)**.
-- The process involved:
-  - Segmenting the entire frame into potential objects using SAM.
-  - Matching YOLO-detected head positions with SAM segments using Intersection over Union (IoU).
-  - Selecting the best-matched segment for each head detection, refining it by expanding its size by 20%.
-- These generated labels helped in training a more robust YOLO model with both head (class 0) and body (class 1) annotations.
-
-### Images for Experiment
+### Visuals
 #### Custom Labeling Process
 This image illustrates the process of manually annotating head positions and generating bounding boxes for YOLO training:
 ![Labeling Tool in Action](media/labeling_tool.png)
