@@ -2,7 +2,10 @@
 
 This project, developed for the *Tracking Olympiad* seminar (SS 2024), focuses on tracking Hexbugs—small, vibrating, bug-like devices that move randomly. The primary goal was to explore methods for accurately detecting and tracking these objects in videos, especially given challenges such as low frame rates and erratic movements.
 
-<img src="/media/tracking_gifs/run_214_head_b_ed_001o.gif" width="100" alt="Description of GIF">
+<div align="center">
+    <img src="/media/tracking_gifs/run_214_head_b_ed_001o.gif" width="200" alt="Description of GIF">
+</div>
+
 
 Disclaimer: This is a quick implementation project. 
 
@@ -14,10 +17,9 @@ Disclaimer: This is a quick implementation project.
 2. [Project Overview](#project-overview)
 3. [Setup Instructions](#setup-instructions)
 4. [Project Structure](#project-structure)
-5. [Experiment Settings](#experiment-settings)
-6. [Methodology](#methodology)
-7. [Demo](#demo)
-8. [Results and Key Findings](#results-and-key-findings)
+5. [Methodology](#methodology)
+6. [Demo](#demo)
+7. [Results and Key Findings](#results-and-key-findings)
 
 ---
 
@@ -117,26 +119,34 @@ Hexbug_Tracking_Project/
 ### Visuals
 #### Custom Labeling Process
 This image illustrates the process of manually annotating head positions and generating bounding boxes for YOLO training:
-![Labeling Tool in Action](media/labeling_tool.png)
+<div align="center">
+    <img src="/media/labeling_tool.png" width="500" alt="Description of GIF">
+</div>
 
 #### SAM Body Label Generation
 This image shows the steps in using SAM for generating body labels:
 - Top: Original frame.
 - Middle: SAM-generated segments.
 - Bottom: Resulting bounding boxes for heads (YOLO detections) and bodies (SAM refinement).
-![SAM Label Generation](media/sam.png)
+<div align="center">
+    <img src="/media/sam.png" width="500" alt="Description of GIF">
+</div>
 
 #### Good and Bad Examples of SAM
 This image shows two good examples where SAM worked well and two cases where it failed:
-![SAM Good and Bad Examples](media/sam_output.png)
 
+<div align="center">
+    <img src="/media/sam_output.png" width="500" alt="Description of GIF">
+</div>
 
 #### Detection and Tracking Failures
 This image shows common detection and tracking issues, such as:
 - Missed detections.
 - ID switches during collisions or occlusions.
-![Detection and Tracking Failures](/media/failings.png)
 
+<div align="center">
+    <img src="/media/failings.png" width="500" alt="Description of GIF">
+</div>
 ---
 
 ## Methodology
@@ -163,16 +173,16 @@ Two tracking methods were evaluated:
 ## Demo
 
 The following gifs showcase the tracking results for the 5 test videos.
-Here the first frame of each of the test videos: ![TestsFrame](/media/testdata.png)
+
+<div style="display: flex; justify-content: center; align-items: flex-start; gap: 10px;">
+    <img src="/media/tracking_gifs/run_214_head_b_ed_001o.gif" height="230" alt="Tracking Demo 1">
+    <img src="/media/tracking_gifs/run_215_head_b_ed_002o.gif" height="230" alt="Tracking Demo 2">
+    <img src="/media/tracking_gifs/run_216_head_b_ed_003o.gif" height="230" alt="Tracking Demo 3">
+    <img src="/media/tracking_gifs/run_217_head_b_ed_004o.gif" height="230" alt="Tracking Demo 4">
+    <img src="/media/tracking_gifs/run_218_head_b_ed_005o.gif" height="230" alt="Tracking Demo 5">
+</div>
 
 
-| Video Name                  | Tracking Demo                                    |
-|-----------------------------|-------------------------------------------------|
-| `run_214_head_b_ed_001.gif` | ![Tracking Demo 1](/media/tracking_gifs/run_214_head_b_ed_001o.gif) |
-| `run_214_head_b_ed_002.gif` | ![Tracking Demo 2](/media/tracking_gifs/run_215_head_b_ed_002o.gif) |
-| `run_214_head_b_ed_003.gif` | ![Tracking Demo 3](/media/tracking_gifs/run_216_head_b_ed_003o.gif) |
-| `run_214_head_b_ed_004.gif` | ![Tracking Demo 4](/media/tracking_gifs/run_217_head_b_ed_004o.gif) |
-| `run_214_head_b_ed_005.gif` | ![Tracking Demo 5](/media/tracking_gifs/run_218_head_b_ed_005o.gif) |
 
 ---
 
