@@ -1,0 +1,7 @@
+anki-repo
+files
+presentation
+data
+*.pth
+results
+media/Traco_Report.pdf
