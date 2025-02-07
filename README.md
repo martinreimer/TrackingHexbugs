@@ -6,9 +6,6 @@ This project, developed for the *Tracking Olympiad* seminar (SS 2024), focuses o
     <img src="/media/tracking_gifs/run_214_head_b_ed_001o.gif" width="200" alt="Description of GIF">
 </div>
 
-
-Disclaimer: This is a quick implementation project. 
-
 ---
 
 ## Table of Contents
@@ -117,11 +114,6 @@ Hexbug_Tracking_Project/
 
 
 ### Visuals
-#### Custom Labeling Process
-This image illustrates the process of manually annotating head positions and generating bounding boxes for YOLO training:
-<div align="center">
-    <img src="/media/labeling_tool.png" width="500" alt="Description of GIF">
-</div>
 
 #### SAM Body Label Generation
 This image shows the steps in using SAM for generating body labels:
@@ -147,6 +139,7 @@ This image shows common detection and tracking issues, such as:
 <div align="center">
     <img src="/media/failings.png" width="500" alt="Description of GIF">
 </div>
+
 ---
 
 ## Methodology
@@ -172,14 +165,11 @@ Two tracking methods were evaluated:
 
 ## Demo
 
-The following gifs showcase the tracking results for the 5 test videos.
+The following gifs showcase the tracking results for 2/5 test videos.
 
 <div style="display: flex; justify-content: center; align-items: flex-start; gap: 10px;">
-    <img src="/media/tracking_gifs/run_214_head_b_ed_001o.gif" height="230" alt="Tracking Demo 1">
     <img src="/media/tracking_gifs/run_215_head_b_ed_002o.gif" height="230" alt="Tracking Demo 2">
-    <img src="/media/tracking_gifs/run_216_head_b_ed_003o.gif" height="230" alt="Tracking Demo 3">
     <img src="/media/tracking_gifs/run_217_head_b_ed_004o.gif" height="230" alt="Tracking Demo 4">
-    <img src="/media/tracking_gifs/run_218_head_b_ed_005o.gif" height="230" alt="Tracking Demo 5">
 </div>
 
 
