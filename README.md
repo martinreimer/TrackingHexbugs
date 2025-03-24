@@ -15,8 +15,7 @@ This project, developed for the *Tracking Olympiad* seminar (SS 2024), focuses o
 3. [Setup Instructions](#setup-instructions)
 4. [Project Structure](#project-structure)
 5. [Methodology](#methodology)
-6. [Demo](#demo)
-7. [Results and Key Findings](#results-and-key-findings)
+6. [Results and Key Findings](#results-and-key-findings)
 
 ---
 
@@ -161,16 +160,6 @@ Two tracking methods were evaluated:
    - Uses optical flow to predict object movement between frames.
    - Matches tracked objects with YOLO detections based on proximity.
 
----
-
-## Demo
-
-The following gifs showcase the tracking results for 2/5 test videos.
-
-<div style="display: flex; justify-content: center; align-items: flex-start; gap: 10px;">
-    <img src="/media/tracking_gifs/run_215_head_b_ed_002o.gif" height="230" alt="Tracking Demo 2">
-    <img src="/media/tracking_gifs/run_217_head_b_ed_004o.gif" height="230" alt="Tracking Demo 4">
-</div>
 
 
 
